@@ -1,14 +1,3 @@
-Number(document.getElementById("a1000").value || 0) * 1000 +
-        Number(document.getElementById("a500").value || 0) * 500 +
-        Number(document.getElementById("a200").value || 0) * 200 +
-        Number(document.getElementById("a100").value || 0) * 100;
-
-      document.getElementById("result").innerText =
-        "المجموع: " + total.toLocaleString("fr-FR") + " دج";
-    }
-  </script>
-</body>
-<h1>برنامج أمين الصندوق BNA</h1>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -40,19 +29,35 @@ Number(document.getElementById("a1000").value || 0) * 1000 +
 <p>1 دج <input type="number" data-value="1"></p>
 <p>0.10 دج <input type="number" data-value="0.1"></p>
 
+<h2>تفاصيل الحساب</h2>
+
+<div id="details"></div>
+
 <h2>المجموع: <span id="total">0.00</span> دج</h2>
 
 <script>
 function calculateTotal() {
+
   let total = 0;
+  let details = "";
 
   document.querySelectorAll("input").forEach(input => {
+
     let count = Number(input.value) || 0;
     let value = Number(input.dataset.value);
-    total += count * value;
+    let result = count * value;
+
+    total += result;
+
+    if (count > 0) {
+      details += value + " × " + count + " = " +
+                 result.toLocaleString("fr-FR") + " دج<br>";
+    }
   });
 
-  document.getElementById("total").textContent = total.toFixed(2);
+  document.getElementById("details").innerHTML = details;
+  document.getElementById("total").textContent =
+    total.toLocaleString("fr-FR");
 }
 
 document.querySelectorAll("input").forEach(input => {
