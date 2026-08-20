@@ -9,4 +9,56 @@ Number(document.getElementById("a1000").value || 0) * 1000 +
   </script>
 </body>
 <h1>برنامج أمين الصندوق BNA</h1>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>برنامج أمين الصندوق BNA</title>
+</head>
+
+<body>
+
+<h1>برنامج أمين الصندوق BNA</h1>
+
+<h2>الأوراق النقدية</h2>
+
+<p>2000 دج <input type="number" data-value="2000"></p>
+<p>1000 دج <input type="number" data-value="1000"></p>
+<p>500 دج <input type="number" data-value="500"></p>
+<p>200 دج <input type="number" data-value="200"></p>
+
+<h2>القطع المعدنية</h2>
+
+<p>200 دج <input type="number" data-value="200"></p>
+<p>100 دج <input type="number" data-value="100"></p>
+<p>50 دج <input type="number" data-value="50"></p>
+<p>20 دج <input type="number" data-value="20"></p>
+<p>10 دج <input type="number" data-value="10"></p>
+<p>5 دج <input type="number" data-value="5"></p>
+<p>2 دج <input type="number" data-value="2"></p>
+<p>1 دج <input type="number" data-value="1"></p>
+<p>0.10 دج <input type="number" data-value="0.1"></p>
+
+<h2>المجموع: <span id="total">0.00</span> دج</h2>
+
+<script>
+function calculateTotal() {
+  let total = 0;
+
+  document.querySelectorAll("input").forEach(input => {
+    let count = Number(input.value) || 0;
+    let value = Number(input.dataset.value);
+    total += count * value;
+  });
+
+  document.getElementById("total").textContent = total.toFixed(2);
+}
+
+document.querySelectorAll("input").forEach(input => {
+  input.addEventListener("input", calculateTotal);
+});
+</script>
+
+</body>
 </html>
